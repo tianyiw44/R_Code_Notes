@@ -1,0 +1,78 @@
+---
+title: "Notes on Codes"
+output: github_document
+---
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+
+# Loarding packages
+  * load all pacakges in the begining so anybody opening the document would have a clear idea on which packages are used.
+```{r setup}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+# Data Import
+  * `read_csv`
+  * `read_excel`
+  * `read_sas`
+
+# Data Export
+ * `write_csv`
+
+# Look at Data and Clean Name
+* `janitor::clean_names(litters_df)`
+* `head(litters_df)`
+* `tail(litters_df)`
+* `skimr::skim(litters_df)`
+
+## Data Import Example
+
+### read_csv
+```{r, eval = FALSE}
+litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df) 
+```
+
+```{r, eval = FALSE}
+litters_df = read_csv("./data/Fas_litters.csv", skip = 10, col_names = FALSE)
+```
+
+```{r, eval = FALSE}
+litters_df = read_csv("./data/Fas_litters.csv", na = c("","NA", 999))
+```
+
+### read_excel
+```{r, eval = FALSE}
+mlb_df = read_excel("./data/mlb11.xlsx")
+mlb_df
+```
+
+```{r, eval = FALSE}
+mlb_df = read_excel("./data/mlb11.xlsx", range = "A1:F7")
+mlb_df
+```
+
+### read_sas.
+```{r, eval = FALSE}
+pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
+pulse_df
+```
+
+## Data Export Example
+### Export the mlb sub-table.
+```{r, eval = FALSE}
+mlb_df
+```
+
+```{r, eval = FALSE}
+write_csv(mlb_df, "./data/mlb_subtable.csv")
+```
+
+
+
+
